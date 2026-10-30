@@ -64,16 +64,12 @@ print(cot[0]["answer"])
 | `LICENSE` | Apache License 2.0 |
 | `scripts/` | Scripts used to clean, deduplicate and split the data (the data files themselves are **not** stored here; see the Hugging Face link above) |
 
-[EDIT: list your actual script file names here, e.g. `scripts/clean_dataset.py`.]
-
 ## How it was made
 
 1. Source material was collected from the datasets listed under [Sources and attribution](#sources-and-attribution).
 2. English/Chinese-origin text was **machine-translated into Bengali with Gemma 4**.
 3. Examples were **classified by specialty** (see categories below).
 4. A cleaning pass removed rows with translation artifacts: stray Cyrillic, CJK, Thai, Arabic and other non-Bengali/non-Latin script mixed into Bengali text, truncated questions, extreme length outliers and exact duplicates. Of 12,188 candidate rows, 1,918 were removed (1,891 for foreign-script contamination).
-
-> [EDIT: describe here, in your own words, exactly how you adapted content to the Bangladeshi context (e.g. local drug brands, ORS, dengue, EPI schedule, referral setting). Only claim localization that you actually applied.]
 
 ## Data fields
 
@@ -149,7 +145,7 @@ This dataset is a derivative work. Please cite the original authors in addition 
 - **MedReason** (Apache-2.0). Wu, J. et al. *MedReason: Eliciting Factual Medical Reasoning Steps in LLMs via Knowledge Graphs.* arXiv:2504.00993, 2025. <https://huggingface.co/datasets/UCSC-VLAA/MedReason>
   MedReason itself aggregates questions from earlier medical QA benchmarks (e.g. MedQA, MedMCQA, PubMedQA); see its dataset card for their citations.
 - **doctor_qa_bangla**. <https://huggingface.co/datasets/shetumohanto/doctor_qa_bangla>
-  The upstream page is tagged Apache-2.0 but its dataset card is empty, so the original provenance of these doctor Q&A pairs could not be verified. [EDIT: add the original origin if you learn it.]
+  The upstream page is tagged Apache-2.0 but its dataset card is empty, so the original provenance of these doctor Q&A pairs could not be verified.
 - **Translation model:** Gemma 4 (Google DeepMind), released under Apache-2.0.
 
 Changes made: translation to Bengali, specialty classification, filtering, de-duplication, schema restructuring (CoT split into `reasoning` and `answer`).
@@ -161,7 +157,7 @@ Research and development on Bengali medical NLP: fine-tuning and evaluating lang
 ## Limitations and warnings
 
 - **Not medical advice.** Do not use this dataset or models trained on it for real clinical decisions without clinician oversight.
-- **Machine translation.** Text was translated by an LLM and not fully reviewed by medical professionals. Terminology errors, mistranslated numbers or units, and awkward phrasing can remain. [EDIT: state how much, if any, was human-reviewed.]
+- **Machine translation.** Text was translated by an LLM and not fully reviewed by medical professionals. Terminology errors, mistranslated numbers or units, and awkward phrasing can remain.
 - **Synthetic reasoning.** The `cot` traces were produced by LLMs in the original datasets and then translated; they may contain medical errors.
 - **Origin bias.** Most content derives from US/Chinese exam-style or case-style questions; disease prevalence, drugs, guidelines and care settings may not match Bangladesh.
 - **Format artifacts.** Some `non_cot` MedReason items are fill-in-the-blank style stems, and some answers contain the original explanation and textbook reference text.
